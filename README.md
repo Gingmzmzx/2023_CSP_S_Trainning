@@ -9,6 +9,8 @@
 - 每天的资料存放在`/day{天数}`目录下。
 - 我记的笔记是每天的目录下的`README.md`，即`/day{天数}/README.md`。
 - 对应的`README.html`与`README.pdf`是使用生成工具由`README.md`转换过去的，pbf转换过去可能有的显示不全。
+- 因为众所周知的原因，内网访问GitHub有点困难，因此有些图片加载速度慢，请谅解。
+- 我是用VSCode做笔记，GitHub的Markdown渲染器与VSCode的渲染器有些许差异，因此有些地方可能出现问题，建议下载下来用VSCode打开或查看html文件。
 
 # 目录 | Content
 - [Day1](day1) 9.29
