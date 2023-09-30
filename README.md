@@ -11,10 +11,10 @@
 - 对应的`README.html`与`README.pdf`是使用生成工具由`README.md`转换过去的，pbf转换过去可能有的显示不全。
 
 # 目录 | Content
-- [Day1](/day1) 9.29
-- [Day2](/day2) 9.30
-- [Day3](/day3) 10.1
-- [Day4](/day4) 10.2
-- [Day5](/day5) 10.3
-- [Day6](/day6) 10.4
-- [Day7](/day7) 10.5
+- [Day1](day1) 9.29
+- [Day2](day2) 9.30
+- [Day3](day3) 10.1
+- [Day4](day4) 10.2
+- [Day5](day5) 10.3
+- [Day6](day6) 10.4
+- [Day7](day7) 10.5
