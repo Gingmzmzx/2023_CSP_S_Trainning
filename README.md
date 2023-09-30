@@ -6,6 +6,7 @@
 毕竟是近五千块的课程，点个Star再走不过分吧（喜
 
 # 食用方法 | Usage
+- 如果你是从[GitHub Pages](https://gingmzmzx.github.io/2023_CSP_S_Trainning/)访问的，请点击上面的`View on GitHub`前往gh仓库下载各种资料。
 - 每天的资料存放在`/day{天数}`目录下。
 - 我记的笔记是每天的目录下的`README.md`，即`/day{天数}/README.md`。
 - 对应的`README.html`与`README.pdf`是使用生成工具由`README.md`转换过去的，pbf转换过去可能有的显示不全。
