@@ -102,11 +102,11 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
 ### 一、动态规划 之 树形DP
 [树上两两距离和](images/IMG_20231001_140844.jpg):
 - 求$\sum\sum dis(i, j)$
-- 统计每条边的贡献：$size[x] \times (n - size[x])$
+- 统计每条边的贡献：$size[a] \times (n - size[a])$
 
 [求每个子树的深度与每个子树的大小](images/IMG_20231001_140755.jpg)：
-- $depth[x] = max(depth[y] + 1)$
-- $size[x] = 1 + \sum size[y]$
+- $depth[a] = max(depth[b] + 1)$
+- $size[a] = 1 + \sum size[b]$
 
 #### [Luogu P3047 \[USACO12FEB\] Nearby Cows G](https://www.luogu.com.cn/problem/P3047)
 
@@ -286,6 +286,16 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
 
 ### 五、状态压缩
 #### [Luogu P1171 售货员的难题](https://www.luogu.com.cn/problem/P1171)
-设$f[S][i]$表示从$1 \rightarrow i$
+设$f[S][i]$表示从$1 \rightarrow i$ .....
 
 #### [Luogu P1559 运动员最佳匹配问题](https://www.luogu.com.cn/problem/P1559)
+
+#### [Luogu P1896 互不侵犯](https://www.luogu.com.cn/problem/P1896)
+
+#### [Luogu P2704 炮兵阵地](https://www.luogu.com.cn/problem/P2704)
+
+#### [Luogu P2157 学校食堂](https://www.luogu.com.cn/problem/P2157)
+
+#### [Luogu P3226 集合选数](https://www.luogu.com.cn/problem/P3226)
+
+## 晚上
