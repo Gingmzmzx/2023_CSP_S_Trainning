@@ -3,7 +3,9 @@ _~~全是数学题~~_
 **小提示：永远不要相信`GitHub Copilot`写的代码 _绝对爆零_**
 
 ## 膜拜
-![](images/IMG_20230929_193432.jpg)
+黄子宽老师：  
+![](images/IMG_20230929_193432.jpg)  
+王廉达大佬：  
 ![](images/p2h88s4i.png)
 
 ## 上午
@@ -46,7 +48,7 @@ $\exists i, \forall j, d_i < d_j + w_{ij}$
 #### 一道自创题
 - 题目描述  
     > 有$q$次询问，每次询问一个数$x$，询问$x$每次除一个约数直到最后变为$1$有多少种方式。  
-    比如$x=6$, 6->1, 6->3->1, 6->2->1三种  
+    比如$x=6, 6 \rightarrow 1, 6 \rightarrow 3 \rightarrow 1, 6 \rightarrow 2 \rightarrow 1$三种  
 
     > $x \leqslant 1e15, q \leqslant 1e4$
 - 题解
