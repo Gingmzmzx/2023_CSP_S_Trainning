@@ -298,4 +298,6 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
 
 #### [Luogu P3226 集合选数](https://www.luogu.com.cn/problem/P3226)
 
+#### [Luogu P3147 262144 P](https://www.luogu.com.cn/problem/P3147) ?
+
 ## 晚上
