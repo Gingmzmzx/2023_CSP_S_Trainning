@@ -108,13 +108,18 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
 - $depth[a] = max(depth[b] + 1)$
 - $size[a] = 1 + \sum size[b]$
 
-#### [Luogu P3047 \[USACO12FEB\] Nearby Cows G](https://www.luogu.com.cn/problem/P3047)
+#### [Luogu P3047 [USACO12FEB] Nearby Cows G](https://www.luogu.com.cn/problem/P3047)
+题解：  
+![](images/1image.png)
 
 #### [Luogu P2014 选课](https://www.luogu.com.cn/problem/P2014)
+题解：  
+![Alt text](images/2image.png)
 
+### 二、树的直径（最长链）
 #### [Luogu P3174 毛毛虫](https://www.luogu.com.cn/problem/P3174)
 
-### 二、最大独立集 / 最小点覆盖
+### 三、最大独立集 / 最小点覆盖
 - 最大独立集：选尽可能多的点，父亲和儿子不能同时在集合里  
     $f_新[x][0] = f_老[x][0] + max{f[y][0], f[y][1]} \\
     f_新[x][1] = f_老[x][0] + f[y][0]$
@@ -123,7 +128,7 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
 
 #### [Luogu P2899 Cell Phone Nerwork G](https://www.luogu.com.cn/problem/P2899)
 
-### 三、树上拓扑序计数
+### 四、树上拓扑序计数
 #### 例题
 - 题目描述：  
     > 给定一颗外向树（每条边的方向是从父亲到儿子）， 求其拓扑序个数$mod 998244353$。  
@@ -183,7 +188,7 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
     }
     ```
 
-### 四、树上问题
+### 五、树上问题
 - 题目描述：  
     > 在树上选出$m$条边互不相交的链，使得它们的长度和最大。  
     $n \leqslant 10^5, m \leqslant 10$
@@ -284,9 +289,63 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
     希望这个例子可以帮助你理解这个问题！
 
 
-### 五、状态压缩
+### 六、状态压缩
 #### [Luogu P1171 售货员的难题](https://www.luogu.com.cn/problem/P1171)
-设$f[S][i]$表示从$1 \rightarrow i$ .....
+**TSP**  
+`GitHub Copilot`:  
+这是一道经典的旅行商问题（TSP）的变种。由于村庄数量较小，可以使用状态压缩 + 动态规划的方法来解决。
+
+具体来说，我们可以使用一个二进制数 $S$ 来表示已经访问过的村庄的集合，其中 $S$ 的第 $i$ 位为 $1$ 表示已经访问过第 $i$ 个村庄，为 $0$ 表示未访问。然后，我们可以使用一个二维数组 $f[S][i]$ 来表示当前已经访问过的村庄集合为 $S$，当前所在的村庄为 $i$ 时，从当前村庄出发，经过所有未访问过的村庄恰好一次，最终回到起点的最短路程。
+
+状态转移方程为：
+
+$$f[S][i] = \min_{j \in S, j \neq i} {f[S \setminus {i}][j] + s_{j,i}}$$
+
+其中 $S \setminus {i}$ 表示从集合 $S$ 中去掉元素 $i$ 后的集合，$s_{j,i}$ 表示从村庄 $j$ 到村庄 $i$ 的路程长度。
+
+最终的答案为 $f[{1,2,\cdots,n}][1]$，即从起点 $1$ 出发，经过所有村庄恰好一次，最终回到起点的最短路程。
+
+时间复杂度为 $O(2^n n^2)$，可以通过本题。
+以下是使用状态压缩 + 动态规划解决该问题的 C++ 代码：
+```C++
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+const int N = 20 + 5;
+const int INF = 0x3f3f3f3f;
+
+int n, s[N][N], f[1 << N][N];
+
+int main()
+{
+    cin >> n;
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= n; j++)
+            cin >> s[i][j];
+
+    memset(f, INF, sizeof(f));
+    f[1][1] = 0;
+
+    for (int S = 1; S < (1 << n); S++)
+        for (int i = 1; i <= n; i++)
+            if (S & (1 << (i - 1)))
+                for (int j = 1; j <= n; j++)
+                    if (S & (1 << (j - 1)) && i != j)
+                        f[S][i] = min(f[S][i], f[S ^ (1 << (i - 1))][j] + s[j][i]);
+
+    cout << f[(1 << n) - 1][1] << endl;
+
+    return 0;
+}
+```
+该代码首先读入村庄数 $n$ 和各村之间的路程 $s_{i,j}$。然后，使用一个二维数组 $f[S][i]$ 来表示当前已经访问过的村庄集合为 $S$，当前所在的村庄为 $i$ 时，从当前村庄出发，经过所有未访问过的村庄恰好一次，最终回到起点的最短路程。初始时，将 $f[1][1]$ 设为 $0$，其余位置设为正无穷。
+
+接下来，使用状态压缩 + 动态规划的方法来计算 $f[S][i]$ 的值。具体来说，我们枚举当前已经访问过的村庄集合 $S$，当前所在的村庄 $i$，以及上一个访问的村庄 $j$，然后根据状态转移方程 $f[S][i] = \min_{j \in S, j \neq i} {f[S \setminus {i}][j] + s_{j,i}}$ 来计算 $f[S][i]$ 的值。
+
+最终的答案为 $f[(1 << n) - 1][1]$，即从起点 $1$ 出发，经过所有村庄恰好一次，最终回到起点的最短路程。
+
+希望这可以帮助到你！
 
 #### [Luogu P1559 运动员最佳匹配问题](https://www.luogu.com.cn/problem/P1559)
 
@@ -297,7 +356,3 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
 #### [Luogu P2157 学校食堂](https://www.luogu.com.cn/problem/P2157)
 
 #### [Luogu P3226 集合选数](https://www.luogu.com.cn/problem/P3226)
-
-#### [Luogu P3147 262144 P](https://www.luogu.com.cn/problem/P3147) ?
-
-## 晚上

@@ -1,42 +1,17 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    vector<int> h(n);
-    for (int i = 0; i < n; i++) {
-        cin >> h[i];
+stack<int> sta;
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    cerr.tie(0);
+    
+    sta.push(1);
+    while(true){
+        sta.push(sta.top() + 1);
+        cout<<sta.top()<<endl;
     }
-
-    int ans = 0;
-    for (int i = 0; i < n-1; i++) {
-        for (int j = i+1; j < n; j++) {
-            if (h[i] > h[j]) {
-                swap(h[i], h[j]);
-                ans++;
-            }
-        }
-    }
-
-    for (int i = 0; i < n-1; i++) {
-        if (h[i] > h[i+1]) {
-            int j = i+2;
-            while (j < n && h[j] < h[i]) {
-                j++;
-            }
-            if (j == n) {
-                j--;
-            }
-            swap(h[i], h[j]);
-            ans++;
-        }
-    }
-
-    cout << ans << endl;
 
     return 0;
 }
