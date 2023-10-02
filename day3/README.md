@@ -134,11 +134,15 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
 
 #### \# [Luogu P2899 Cell Phone Nerwork G](https://www.luogu.com.cn/problem/P2899)
 
+#### \# [Luogu P4084 Barn Painting G](https://www.luogu.com.cn/problem/P4084) 
+
 ### 四、树上拓扑序计数
 #### \# 例题
 - 题目描述：  
     > 给定一颗外向树（每条边的方向是从父亲到儿子）， 求其拓扑序个数$mod 998244353$。  
     $n \leqslant 10^5$
+- 题解：  
+    ![Alt text](images/3image.png)
 - `GitHub Copilot`:
     我们可以使用动态规划来解决这个问题。设 $f_i$ 表示以节点 $i$ 为根的子树中，节点的拓扑序列个数。则有以下状态转移方程：
 
@@ -201,6 +205,8 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
     $n \leqslant 10^5, m \leqslant 10$
     - `链`：在树上，`链`通常指一条从根节点到叶子节点的路径。
     - `半链`：在树上，`半链`通常指一条从根节点到非叶子节点的路径。
+- 题解：  
+    ![Alt text](images/4image.png)
 - `GitHub Copilot`：  
     这是一道经典的树形DP问题，可以使用DP来解决。
 
@@ -298,67 +304,72 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
 
 ### 六、状态压缩
 #### \# [Luogu P1171 售货员的难题](https://www.luogu.com.cn/problem/P1171) **TSP**  
-`GitHub Copilot`:  
-这是一道经典的旅行商问题（TSP）的变种。由于村庄数量较小，可以使用状态压缩 + 动态规划的方法来解决。
+- 题解：  
+    ![Alt text](images/5image.png)
+- `GitHub Copilot`:  
+    这是一道经典的旅行商问题（TSP）的变种。由于村庄数量较小，可以使用状态压缩 + 动态规划的方法来解决。
 
-具体来说，我们可以使用一个二进制数 $S$ 来表示已经访问过的村庄的集合，其中 $S$ 的第 $i$ 位为 $1$ 表示已经访问过第 $i$ 个村庄，为 $0$ 表示未访问。然后，我们可以使用一个二维数组 $f[S][i]$ 来表示当前已经访问过的村庄集合为 $S$，当前所在的村庄为 $i$ 时，从当前村庄出发，经过所有未访问过的村庄恰好一次，最终回到起点的最短路程。
+    具体来说，我们可以使用一个二进制数 $S$ 来表示已经访问过的村庄的集合，其中 $S$ 的第 $i$ 位为 $1$ 表示已经访问过第 $i$ 个村庄，为 $0$ 表示未访问。然后，我们可以使用一个二维数组 $f[S][i]$ 来表示当前已经访问过的村庄集合为 $S$，当前所在的村庄为 $i$ 时，从当前村庄出发，经过所有未访问过的村庄恰好一次，最终回到起点的最短路程。
 
-状态转移方程为：
+    状态转移方程为：
 
-$$f[S][i] = \min_{j \in S, j \neq i} {f[S \setminus {i}][j] + s_{j,i}}$$
+    $$f[S][i] = \min_{j \in S, j \neq i} {f[S \setminus {i}][j] + s_{j,i}}$$
 
-其中 $S \setminus {i}$ 表示从集合 $S$ 中去掉元素 $i$ 后的集合，$s_{j,i}$ 表示从村庄 $j$ 到村庄 $i$ 的路程长度。
+    其中 $S \setminus {i}$ 表示从集合 $S$ 中去掉元素 $i$ 后的集合，$s_{j,i}$ 表示从村庄 $j$ 到村庄 $i$ 的路程长度。
 
-最终的答案为 $f[{1,2,\cdots,n}][1]$，即从起点 $1$ 出发，经过所有村庄恰好一次，最终回到起点的最短路程。
+    最终的答案为 $f[{1,2,\cdots,n}][1]$，即从起点 $1$ 出发，经过所有村庄恰好一次，最终回到起点的最短路程。
 
-时间复杂度为 $O(2^n n^2)$，可以通过本题。
-以下是使用状态压缩 + 动态规划解决该问题的 C++ 代码：
-```C++
-#include <iostream>
-#include <cstring>
-using namespace std;
+    时间复杂度为 $O(2^n n^2)$，可以通过本题。
+    以下是使用状态压缩 + 动态规划解决该问题的 C++ 代码：
+    ```C++
+    #include <iostream>
+    #include <cstring>
+    using namespace std;
 
-const int N = 20 + 5;
-const int INF = 0x3f3f3f3f;
+    const int N = 20 + 5;
+    const int INF = 0x3f3f3f3f;
 
-int n, s[N][N], f[1 << N][N];
+    int n, s[N][N], f[1 << N][N];
 
-int main()
-{
-    cin >> n;
-    for (int i = 1; i <= n; i++)
-        for (int j = 1; j <= n; j++)
-            cin >> s[i][j];
-
-    memset(f, INF, sizeof(f));
-    f[1][1] = 0;
-
-    for (int S = 1; S < (1 << n); S++)
+    int main()
+    {
+        cin >> n;
         for (int i = 1; i <= n; i++)
-            if (S & (1 << (i - 1)))
-                for (int j = 1; j <= n; j++)
-                    if (S & (1 << (j - 1)) && i != j)
-                        f[S][i] = min(f[S][i], f[S ^ (1 << (i - 1))][j] + s[j][i]);
+            for (int j = 1; j <= n; j++)
+                cin >> s[i][j];
 
-    cout << f[(1 << n) - 1][1] << endl;
+        memset(f, INF, sizeof(f));
+        f[1][1] = 0;
 
-    return 0;
-}
-```
-该代码首先读入村庄数 $n$ 和各村之间的路程 $s_{i,j}$。然后，使用一个二维数组 $f[S][i]$ 来表示当前已经访问过的村庄集合为 $S$，当前所在的村庄为 $i$ 时，从当前村庄出发，经过所有未访问过的村庄恰好一次，最终回到起点的最短路程。初始时，将 $f[1][1]$ 设为 $0$，其余位置设为正无穷。
+        for (int S = 1; S < (1 << n); S++)
+            for (int i = 1; i <= n; i++)
+                if (S & (1 << (i - 1)))
+                    for (int j = 1; j <= n; j++)
+                        if (S & (1 << (j - 1)) && i != j)
+                            f[S][i] = min(f[S][i], f[S ^ (1 << (i - 1))][j] + s[j][i]);
 
-接下来，使用状态压缩 + 动态规划的方法来计算 $f[S][i]$ 的值。具体来说，我们枚举当前已经访问过的村庄集合 $S$，当前所在的村庄 $i$，以及上一个访问的村庄 $j$，然后根据状态转移方程 $f[S][i] = \min_{j \in S, j \neq i} {f[S \setminus {i}][j] + s_{j,i}}$ 来计算 $f[S][i]$ 的值。
+        cout << f[(1 << n) - 1][1] << endl;
 
-最终的答案为 $f[(1 << n) - 1][1]$，即从起点 $1$ 出发，经过所有村庄恰好一次，最终回到起点的最短路程。
+        return 0;
+    }
+    ```
+    该代码首先读入村庄数 $n$ 和各村之间的路程 $s_{i,j}$。然后，使用一个二维数组 $f[S][i]$ 来表示当前已经访问过的村庄集合为 $S$，当前所在的村庄为 $i$ 时，从当前村庄出发，经过所有未访问过的村庄恰好一次，最终回到起点的最短路程。初始时，将 $f[1][1]$ 设为 $0$，其余位置设为正无穷。
 
-希望这可以帮助到你！
+    接下来，使用状态压缩 + 动态规划的方法来计算 $f[S][i]$ 的值。具体来说，我们枚举当前已经访问过的村庄集合 $S$，当前所在的村庄 $i$，以及上一个访问的村庄 $j$，然后根据状态转移方程 $f[S][i] = \min_{j \in S, j \neq i} {f[S \setminus {i}][j] + s_{j,i}}$ 来计算 $f[S][i]$ 的值。
+
+    最终的答案为 $f[(1 << n) - 1][1]$，即从起点 $1$ 出发，经过所有村庄恰好一次，最终回到起点的最短路程。
+
+    希望这可以帮助到你！
 
 #### \# [Luogu P1559 运动员最佳匹配问题](https://www.luogu.com.cn/problem/P1559)
+![Alt text](images/image.png)
 
 #### \# [Luogu P1896 互不侵犯](https://www.luogu.com.cn/problem/P1896)
 
 #### \# [Luogu P2704 炮兵阵地](https://www.luogu.com.cn/problem/P2704)
 
 #### \# [Luogu P2157 学校食堂](https://www.luogu.com.cn/problem/P2157)
+![Alt text](images/image-1.png)
 
 #### \# [Luogu P3226 集合选数](https://www.luogu.com.cn/problem/P3226)
+![Alt text](images/image-2.png)

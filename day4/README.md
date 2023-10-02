@@ -1,5 +1,4 @@
 # 第四天
----
 | 笔记信息 |  |
 |----|----|
 | 作者 | [Gingmzmzx](https://github.com/Gingmzmzx) |
@@ -14,16 +13,20 @@
 #### \# [Luogu P4363 一双木棋](https://www.luogu.com.cn/problem/P4363)
 - 小提示：状态压缩压边界线就可以
 - 图解：  
-    ![]()
+    ![](images/IMG_20231002_084224.jpg)
 
 #### \# [Luogu P5369 最大前缀和](https://www.luogu.com.cn/problem/P5369)
+![Alt text](images/image.png)
 
 #### \# [Luogu P5492 随机算法](https://www.luogu.com.cn/problem/P5492)
+![Alt text](images/image-1.png)
 
 #### \# 拓扑序计数
 - 题目描述：  
     > 给定一张有向无环图，求其合法拓扑序个数
     $n \leqslant 20, m \leqslant  \frac {n(n-1)}2$
+- 题解：  
+    ![Alt text](images/image-2.png)
 
 #### \# 边子集拓扑序计数
 - 题目描述：  
@@ -31,10 +34,14 @@
     > - 对于$T \subseteq E$定义$f(T)$为保留$T$时的合法拓扑序个数
     > - 求$\sum_{t \subseteq E}f(T)$
     > - $n \leqslant 20, m \leqslant n(n-1)$
+- 题解：  
+    ![Alt text](images/image-3.png)
 
 #### \# [Luogu P2831 愤怒的小鸟](https://www.luogu.com.cn/problem/P2831)
+![Alt text](images/image-4.png)
 
 #### \# [Luogu P3959 宝藏](https://www.luogu.com.cn/problem/P3959)
+![Alt text](images/image-5.png)
 
 ### 二、优先队列优化DP
 #### \# 经典例题：滑动窗口
@@ -126,6 +133,7 @@
 #### \# 简单应用：[Luogu P2216 理想的正方形](https://www.luogu.com.cn/problem/P2216)
 
 #### \# [Luogu P2219 修筑绿化带](https://www.luogu.com.cn/problem/P2219)
+![Alt text](images/image-6.png)
 
 #### \# 求最大全0正方形
 - 题目描述：（[Luogu P4259](https://www.luogu.com.cn/problem/P4259)待修）  
@@ -134,6 +142,7 @@
 - 题解：  
     - 带log的做法：枚举每个点作为左上角，二分正方形边长
     - 不带log的做法：  
+        ![Alt text](images/image-7.png)
         - `GitHub Copilot`这样说：  
             这是一个经典的计算机科学问题，可以使用动态规划来解决。我们可以定义一个二维数组$dp$，其中$dp_{i,j}$表示以$(i,j)$为右下角的最大全0正方形的边长。那么，我们可以得到以下状态转移方程：
 
@@ -144,17 +153,32 @@
             最终，我们只需要遍历$dp$数组，找到其中的最大值即可。
 
             这个方法的时间复杂度是$O(nm)$，因为我们需要遍历整个矩阵来计算$dp$数组，然后再遍历一次$dp$数组来找到最大值。
-        - 老师的做法：  
-            ![]()
 
 #### \# [Luogu P2254 瑰丽华尔兹](https://www.luogu.com.cn/problem/P2254)
+![Alt text](images/image-9.png)
 
 #### \# [Luogu P4381 Island](https://www.luogu.com.cn/problem/P4381)
 - 题目大意：  
     给一个集环树，求直径
+- 题解：  
+    ![Alt text](images/image-8.png)
 
 #### \# [Luogu P5665 划分](https://www.luogu.com.cn/problem/P5665)
+![Alt text](images/image-10.png)
 
 #### \# [Luogu P5824 十二重计数法](https://www.luogu.com.cn/problem/P5824)
 
-P3773
+#### \# [Luogu P3702 序列计数](https://www.luogu.com.cn/problem/P3702)
+![Alt text](images/image-11.png)
+
+#### \# [Luogu P3773 吉夫特](https://www.luogu.com.cn/problem/P3773)
+![Alt text](images/image-12.png)
+
+#### \# [Luogu P5664 Emiya 家今天的饭](https://www.luogu.com.cn/problem/P5664)
+![Alt text](images/image-13.png)
+
+### 三、高维前缀和
+没有记下来哦~
+
+### 四、斜率优化
+#### \# [Luogu P3195 玩具装箱](https://www.luogu.com.cn/problem/P3195)
