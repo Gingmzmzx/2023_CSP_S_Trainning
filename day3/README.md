@@ -9,7 +9,7 @@
 ## 上午
 
 ### 一、图论
-#### 加权路径和
+#### \# 加权路径和
 > 给定一个$n$个点的树，每条边带权值$w_i$。有$q$次询问，每次询问点$u$到点$v$的路径的权值，一条路径的权值计算方法如下：  
 假设路径上的边权是$w_1,w_2,...,w_k$，那么路径的权值为$w_1*1+w_2*2+...+w_k*k$。
 
@@ -17,7 +17,7 @@
 版本二：可以离线：$n, q \leqslant 10^6$  
 版本三：强制在线，带修改（路径上所有边的权值都加上一个数）：$n, q \leqslant 10^5$
 
-#### 次小生成树
+#### \# 次小生成树
 > 给定一张$n$个点，$m$条边，每条边权值为$w_i$的无向图，求次小生成树权值和。  
 $n, m \leqslant 10^5$
 
@@ -25,17 +25,17 @@ $n, m \leqslant 10^5$
 - 没啥好考的
 - 左偏树应用会多一些
 
-#### 参考资料
+#### \# 参考资料
 - [OI-Wiki 数据结构 / 堆 / 二叉堆](https://oi-wiki.org/ds/binary-heap/)
 - [Wikipedia 维基百科](https://zh.wikipedia.org/zh-hans/%E4%BA%8C%E5%8F%89%E5%A0%86)
 
-#### 例题：优先队列
+#### \# 例题：优先队列
 - 题目描述：  
     > 老师现场出的，没记下题目来，自己去ppt里面找补
 - 图解：  
     ![](images/IMG_20231001_090107.jpg)
 
-#### 矩形叠加问题
+#### \# 矩形叠加问题
 - 题目描述：  
     > 给定一个$n \times n$二维平面上$m$个矩形，对于$i=1, 2, ..., n$，求所有满足$x=i$的整点中被最多矩形覆盖的整点被多少个矩形覆盖。
 - 提示：  
@@ -43,12 +43,12 @@ $n, m \leqslant 10^5$
 
     一个扫描线，从左到右扫过去，看与多少个矩形有交。与一个新矩形相交时$[yl, yr]+1$，离开矩形时$[yl, yr]-1$，_最后统计一下每个点被覆盖了多少次。_
 
-#### [LibreOJ Round #6 花火](https://contest-archive.loj.ac/contest/11/problem/3/)
+#### \# [LibreOJ Round #6 花火](https://contest-archive.loj.ac/contest/11/problem/3/)
 图解：  
 ![](images/IMG_20231001_095314.jpg)
 
 ### 三、线段树分治
-#### 连通块个数
+#### \# 连通块个数
 - 题目描述：  
     > 维护一张无向图$q$次操作，每次加入一条边或删一条边，求每次操作后的连通块个数。  
     $q \leqslant 1e5$
@@ -57,18 +57,18 @@ $n, m \leqslant 10^5$
     例二：![](images/IMG_20231001_100517.jpg)
 
 ### 四、哈希 Hash
-#### 哈希 & 字符串哈希
+#### \# 哈希 & 字符串哈希
 ![](images/IMG_20231001_101243.jpg)  
 _我记得我应该是会哈希的，为什么给我讲蒙了（_
 
-#### 经典应用
+#### \# 经典应用
 > 给定串$S, q$次询问，每次询问两个位置$l_1, l_2$的最长公共前缀。
 
-#### [CF 1017 E](https://www.luogu.com.cn/problem/CF1017E)
+#### \# [CF 1017 E](https://www.luogu.com.cn/problem/CF1017E)
 > 给定两个平面中的点集$S, T$，判断他们的凸包是否旋转、平移同构。  
 $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
 
-#### CCF 2023 D 括号
+#### \# CCF 2023 D 括号
 - 题目描述：  
     > 给定一个有$m$种括号的长度为$n$的括号序列，每种括号分为左右两种，有$q$次操作，每次操作有两种情况：  
         1、修改一个位置的括号类型（哪一种、左/右）  
@@ -82,7 +82,7 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
 - 小提示：  
     - 线段树维护连乘
 
-#### [UOJ 同构判定鸭](https://uoj.ac/problem/552)
+#### \# [UOJ 同构判定鸭](https://uoj.ac/problem/552)
 图解：  
 ![](images/IMG_20231001_112039.jpg)
 
@@ -108,16 +108,16 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
 - $depth[a] = max(depth[b] + 1)$
 - $size[a] = 1 + \sum size[b]$
 
-#### [Luogu P3047 [USACO12FEB] Nearby Cows G](https://www.luogu.com.cn/problem/P3047)
+#### \# [Luogu P3047 [USACO12FEB] Nearby Cows G](https://www.luogu.com.cn/problem/P3047)
 题解：  
 ![](images/1image.png)
 
-#### [Luogu P2014 选课](https://www.luogu.com.cn/problem/P2014)
+#### \# [Luogu P2014 选课](https://www.luogu.com.cn/problem/P2014)
 题解：  
 ![Alt text](images/2image.png)
 
 ### 二、树的直径（最长链）
-#### [Luogu P3174 毛毛虫](https://www.luogu.com.cn/problem/P3174)
+#### \# [Luogu P3174 毛毛虫](https://www.luogu.com.cn/problem/P3174)
 
 ### 三、最大独立集 / 最小点覆盖
 - 最大独立集：选尽可能多的点，父亲和儿子不能同时在集合里  
@@ -126,10 +126,10 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
 
 - 最小点覆盖：选尽可能小的点，父亲和儿子必须有一个在集合里
 
-#### [Luogu P2899 Cell Phone Nerwork G](https://www.luogu.com.cn/problem/P2899)
+#### \# [Luogu P2899 Cell Phone Nerwork G](https://www.luogu.com.cn/problem/P2899)
 
 ### 四、树上拓扑序计数
-#### 例题
+#### \# 例题
 - 题目描述：  
     > 给定一颗外向树（每条边的方向是从父亲到儿子）， 求其拓扑序个数$mod 998244353$。  
     $n \leqslant 10^5$
@@ -189,6 +189,7 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
     ```
 
 ### 五、树上问题
+#### \# 例题
 - 题目描述：  
     > 在树上选出$m$条边互不相交的链，使得它们的长度和最大。  
     $n \leqslant 10^5, m \leqslant 10$
@@ -290,8 +291,7 @@ $\vert S \vert, \vert T \vert \leqslant 1e5$, 坐标范围 $[0, 10^8]$
 
 
 ### 六、状态压缩
-#### [Luogu P1171 售货员的难题](https://www.luogu.com.cn/problem/P1171)
-**TSP**  
+#### \# [Luogu P1171 售货员的难题](https://www.luogu.com.cn/problem/P1171) **TSP**  
 `GitHub Copilot`:  
 这是一道经典的旅行商问题（TSP）的变种。由于村庄数量较小，可以使用状态压缩 + 动态规划的方法来解决。
 
@@ -347,12 +347,12 @@ int main()
 
 希望这可以帮助到你！
 
-#### [Luogu P1559 运动员最佳匹配问题](https://www.luogu.com.cn/problem/P1559)
+#### \# [Luogu P1559 运动员最佳匹配问题](https://www.luogu.com.cn/problem/P1559)
 
-#### [Luogu P1896 互不侵犯](https://www.luogu.com.cn/problem/P1896)
+#### \# [Luogu P1896 互不侵犯](https://www.luogu.com.cn/problem/P1896)
 
-#### [Luogu P2704 炮兵阵地](https://www.luogu.com.cn/problem/P2704)
+#### \# [Luogu P2704 炮兵阵地](https://www.luogu.com.cn/problem/P2704)
 
-#### [Luogu P2157 学校食堂](https://www.luogu.com.cn/problem/P2157)
+#### \# [Luogu P2157 学校食堂](https://www.luogu.com.cn/problem/P2157)
 
-#### [Luogu P3226 集合选数](https://www.luogu.com.cn/problem/P3226)
+#### \# [Luogu P3226 集合选数](https://www.luogu.com.cn/problem/P3226)
