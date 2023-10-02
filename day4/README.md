@@ -1,4 +1,11 @@
 # 第四天
+---
+| 笔记信息 |  |
+|----|----|
+| 作者 | [Gingmzmzx](https://github.com/Gingmzmzx) |
+| 时间 | 2023-10-2 |
+| 教师 | 周天宝 |
+
 日常膜拜
 
 ## 上午
@@ -29,7 +36,7 @@
 
 #### \# [Luogu P3959 宝藏](https://www.luogu.com.cn/problem/P3959)
 
-### 二、优先队列（优化DP）
+### 二、优先队列优化DP
 #### \# 经典例题：滑动窗口
 - 题目描述（`GitHub Copilot`）：  
     > 给定一个长度为$n$的序列，求其所有长度为$k$的连续子序列中的最大值
@@ -119,3 +126,35 @@
 #### \# 简单应用：[Luogu P2216 理想的正方形](https://www.luogu.com.cn/problem/P2216)
 
 #### \# [Luogu P2219 修筑绿化带](https://www.luogu.com.cn/problem/P2219)
+
+#### \# 求最大全0正方形
+- 题目描述：（[Luogu P4259](https://www.luogu.com.cn/problem/P4259)待修）  
+    > 给定一个$n \times m$的0/1矩阵，求其最大的全0正方形的边长
+    > $n, m \leqslant 1000$
+- 题解：  
+    - 带log的做法：枚举每个点作为左上角，二分正方形边长
+    - 不带log的做法：  
+        - `GitHub Copilot`这样说：  
+            这是一个经典的计算机科学问题，可以使用动态规划来解决。我们可以定义一个二维数组$dp$，其中$dp_{i,j}$表示以$(i,j)$为右下角的最大全0正方形的边长。那么，我们可以得到以下状态转移方程：
+
+            $$ dp_{i,j} = \begin{cases} 0 & \text{if } i = 0 \text{ or } j = 0 \text{ or } matrix_{i,j} = 1 \ \min(dp_{i-1,j}, dp_{i,j-1}, dp_{i-1,j-1}) + 1 & \text{otherwise} \end{cases} $$
+
+            其中，$matrix_{i,j}$表示矩阵中第$i$行第$j$列的元素。
+
+            最终，我们只需要遍历$dp$数组，找到其中的最大值即可。
+
+            这个方法的时间复杂度是$O(nm)$，因为我们需要遍历整个矩阵来计算$dp$数组，然后再遍历一次$dp$数组来找到最大值。
+        - 老师的做法：  
+            ![]()
+
+#### \# [Luogu P2254 瑰丽华尔兹](https://www.luogu.com.cn/problem/P2254)
+
+#### \# [Luogu P4381 Island](https://www.luogu.com.cn/problem/P4381)
+- 题目大意：  
+    给一个集环树，求直径
+
+#### \# [Luogu P5665 划分](https://www.luogu.com.cn/problem/P5665)
+
+#### \# [Luogu P5824 十二重计数法](https://www.luogu.com.cn/problem/P5824)
+
+P3773

@@ -1,41 +1,71 @@
 #include <iostream>
-#include <queue>
+#include <vector>
+#include <algorithm>
 using namespace std;
-const int N = 1e6 + 10;
-int n, k, a[N];
-priority_queue<int, vector<int>, greater<int>> q1; // 小根堆
-priority_queue<int> q2; // 大根堆
+
+const int mod = 998244353;
+
+// 求阶乘
+int factorial(int n) {
+    int res = 1;
+    for (int i = 1; i <= n; i++) {
+        res = (long long)res * i % mod;
+    }
+    return res;
+}
+
+// 求组合数
+int C(int n, int m) {
+    if (m > n) {
+        return 0;
+    }
+    int res = 1;
+    for (int i = 1; i <= m; i++) {
+        res = (long long)res * (n - i + 1) % mod;
+        res = (long long)res * (long long)i % mod;
+    }
+    return res;
+}
 
 int main() {
-    cin >> n >> k;
-    for (int i = 1; i <= n; i++) cin >> a[i];
-    for (int i = 1; i <= k; i++) {
-        if (q2.empty() || a[i] <= q2.top()) q2.push(a[i]);
-        else q1.push(a[i]);
-        if (q1.size() > q2.size()) {
-            q2.push(q1.top());
-            q1.pop();
-        }
-        if (q2.size() > q1.size() + 1) {
-            q1.push(q2.top());
-            q2.pop();
-        }
-    }
-    cout << (q2.size() > q1.size() ? q2.top() : (q1.top() + q2.top()) / 2) << endl;
-    for (int i = k + 1; i <= n; i++) {
-        if (a[i - k] <= q2.top()) q2.pop();
-        else q1.pop();
-        if (q2.empty() || a[i] <= q2.top()) q2.push(a[i]);
-        else q1.push(a[i]);
-        if (q1.size() > q2.size()) {
-            q2.push(q1.top());
-            q1.pop();
-        }
-        if (q2.size() > q1.size() + 1) {
-            q1.push(q2.top());
-            q2.pop();
-        }
-        cout << (q2.size() > q1.size() ? q2.top() : (q1.top() + q2.top()) / 2) << endl;
-    }
+    int n, m;
+    cin >> n >> m;
+
+    // I
+    cout << C(m, n) << endl;
+
+    // II
+    cout << C(m, n) * factorial(n) % mod << endl;
+
+    // III
+    cout << C(m - 1, n - 1) << endl;
+
+    // IV
+    cout << C(n + m - 1, n - 1) << endl;
+
+    // V
+    cout << C(n, m) << endl;
+
+    // VI
+    cout << C(n - 1, m - 1) << endl;
+
+    // VII
+    cout << C(n + m - 1, n - 1) << endl;
+
+    // VIII
+    cout << C(n, m) << endl;
+
+    // IX
+    cout << 1 << endl;
+
+    // X
+    cout << C(n + m - 1, n - 1) << endl;
+
+    // XI
+    cout << (m >= n ? 1 : 0) << endl;
+
+    // XII
+    cout << 1 << endl;
+
     return 0;
 }
