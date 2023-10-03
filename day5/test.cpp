@@ -1,83 +1,87 @@
-#include <iostream>
-#include <cstdio>
-#include <cstring>
-#include <algorithm>
-#include <vector>
-#include <queue>
+#include <bits/stdc++.h>
 using namespace std;
 
-const int N = 2e5 + 10, M = 2e5 + 10;
-
-int n, m;
-int h[N], e[M], ne[M], w[M], idx;
-int dist[N], cnt[N];
-bool st[N];
-vector<int> mst;
-
-struct Edge {
-    int a, b, w;
-} edges[M];
-
-void add(int a, int b, int c) {
-    e[idx] = b, w[idx] = c, ne[idx] = h[a], h[a] = idx ++;
+// 快速读取
+inline int read(){
+    int x = 0, f = 1;
+    char ch = getchar();
+    while(ch < '0' || ch > '9'){
+        if(ch == '-') f = -1;
+        ch = getchar();
+    }
+    while(ch >= '0' && ch <= '9'){
+        x = x * 10 + ch - '0';
+        ch = getchar();
+    }
+    return x * f;
 }
 
-void prim() {
-    memset(dist, 0x3f, sizeof dist);
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
-    q.push({0, 1});
-    dist[1] = 0;
-    while (q.size()) {
-        auto t = q.top();
-        q.pop();
-        int ver = t.second, distance = t.first;
-        if (st[ver]) continue;
-        st[ver] = true;
-        if (ver != 1) mst.push_back(cnt[ver]);
-        for (int i = h[ver]; ~i; i = ne[i]) {
-            int j = e[i];
-            if (dist[j] > w[i]) {
-                dist[j] = w[i];
-                cnt[j] = i;
-                q.push({dist[j], j});
-            }
+// 随机数生成
+class Random{
+    public:
+        int rand(int l, int r){
+            return l + rand() % (r - l + 1);
         }
-    }
-}
+        int rand(int r){
+            return rand(0, r);
+        }
+        int rand(){
+            return rand(0x7fffffff);
+        }
+        void set_seed(int seed){
+            srand(seed);
+        }
+        void set_seed(){
+            srand(time(0));
+        }
+};
 
-int main() {
-    scanf("%d%d", &n, &m);
-    memset(h, -1, sizeof h);
-    for (int i = 0; i < m; i ++ ) {
-        int a, b, c;
-        scanf("%d%d%d", &a, &b, &c);
-        add(a, b, c), add(b, a, c);
-        edges[i] = {a, b, c};
-    }
-    prim();
-    for (int i = 0; i < m; i ++ ) {
-        int a = edges[i].a, b = edges[i].b, c = edges[i].w;
-        bool is_mst = false;
-        for (auto j : mst) {
-            if (j == cnt[a] || j == cnt[b]) {
-                is_mst = true;
-                break;
-            }
+// 不使用加减乘除符号实现加减乘除运算
+class Math{
+    public:
+        int add(int a, int b){
+            int sum = 0, carry = 0;
+            do{
+                sum = a ^ b;
+                carry = (a & b) << 1;
+                a = sum;
+                b = carry;
+            }while(b != 0);
+            return a;
         }
-        if (is_mst) puts("-1");
-        else {
-            st[a] = st[b] = false;
-            add(a, b, c), add(b, a, c);
-            prim();
-            int res = 0x3f3f3f3f;
-            for (auto j : mst) {
-                if (j != cnt[a] && j != cnt[b]) {
-                    res = min(res, w[j]);
+        int sub(int a, int b){
+            return add(a, add(~b, 1));
+        }
+        int mul(int a, int b){
+            int sum = 0;
+            while(b != 0){
+                if(b & 1){
+                    sum = add(sum, a);
                 }
+                a <<= 1;
+                b >>= 1;
             }
-            printf("%d\n", res);
-            add(a, b, 0), add(b, a, 0);
+            return sum;
         }
-    }
+        int div(int a, int b){
+            int sum = 0;
+            while(a >= b){
+                a = sub(a, b);
+                sum = add(sum, 1);
+            }
+            return sum;
+        }
+};
+    
+int main(){
+    Math math;
+    Random random;
+    random.set_seed();
+    cout << random.rand() <<endl;
+    cout << math.add(random.rand(0, 100), random.rand(0, 100)) << endl;
+    cout << math.sub(random.rand(0, 100), random.rand(0, 100)) << endl;
+    cout << math.mul(random.rand(0, 100), random.rand(0, 100)) << endl;
+    cout << math.div(random.rand(0, 100), random.rand(0, 100)) << endl;
+
     return 0;
 }
