@@ -1,21 +1,22 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+
 using namespace std;
-int i, j, k, n, m, s, ans, f[10010], p1, p2, p3;
-int find(int k){
-    if(f[k]==k)return k;
-    return f[k]=find(f[k]);
-}
+
+int n,A[5140],dp[5140];
+
+int maxn=-1e9;
 int main(){
-    cin>>n>>m;
-    for(i=1;i<=n;i++) f[i]=i;
-    for(i=1;i<=m;i++){
-        cin>>p1>>p2>>p3;
-        if(p1==1) f[find(p2)]=find(p3);
-        else
-            if(find(p2)==find(p3))
-                cout<<"Yes"<<endl;
-            else
-                cout<<"No"<<endl;
-    }
-    return 0;
+	cin>>n;
+	for (int i=1;i<=n;i++){
+		cin>>A[i];
+	}
+	for (int i=1;i<=n;i++){
+		dp[i]=1;
+		for (int j=1;j<=i;j++){
+			if(A[j]<A[i]&&dp[i]<dp[j]+1)dp[i]=dp[j]+1;
+		}
+		if(dp[i]>maxn)maxn=dp[i];
+	}
+	cout<<maxn;
+	return 0;
 }
